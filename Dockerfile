@@ -7,7 +7,8 @@ RUN yum update -y tzdata ;\
 sed 's%/mysql-configured%/var/lib/mysql/mysql-configured%' -i /start.sh ;\
 echo "Include vhosts.d/*.conf" >> /etc/httpd/conf/httpd.conf ;\
 echo "NameVirtualHost *:80" >> /etc/httpd/conf/httpd.conf ;\
-rm /etc/httpd/conf.d/zabbix.conf
+rm /etc/httpd/conf.d/zabbix.conf ;\
+sed 's%php_value date.timezone UTC%php_value date.timezone Asia/Novosibirsk%' -i /etc/httpd/conf.d/zabbix.conf
 
 ADD vhosts.d /etc/httpd/vhosts.d/
 
